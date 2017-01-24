@@ -47,8 +47,8 @@ exports.setPair = function(pair) {
  * @return: essa função não emite nenhum retorno  
  */
 exports.setCredential = function(api, key) {
-	apiKey = api
-	apiSecret = key
+	exports.apiKey = api
+	exports.apiSecret = key
 	setInterval(function() {
 		exports.triggerOrders()
 	}, 1500)
@@ -59,7 +59,7 @@ exports.setCredential = function(api, key) {
  */
 exports.triggerOrders = function() {
 	if (exports.apiKey == '' || exports.apiSecret == '') return false
-	openorders(function(err, data) {
+	exports.openorders(function(err, data) {
 		if (err) console.log(err)
 		exports.ordersArr = []
 		for (var i in data) {
