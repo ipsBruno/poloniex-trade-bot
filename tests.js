@@ -5,7 +5,7 @@
  var bot = require('./core.js')
 
 // Configurar o BOT
-bot.setCredential('G0XFH5YY-PB0G54V4-IYENK44H-VVKNKKGR', 'f2193fa1057a4ecd2ac738fb220799df304ae60f032b95b17fa90dea25025e29b2d08d25964f4fdee3363cd0c0842967831a2dd028f0f12248e6b5354532628f')
+bot.setCredential('G0XFH5YY-PB0G5444H-VVKNKKGR', 'f2193fa1057a4ecd2ac738fb220799df304ae60f032b95b17fd25964f4fdee3363cd0c0842967831a2dd028f0f12248e6b5354532628f')
 bot.setPair('USDT_BTC')
 
 // Valor para trade
