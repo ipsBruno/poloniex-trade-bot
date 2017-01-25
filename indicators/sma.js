@@ -10,7 +10,7 @@ const technicalindicators = require('technicalindicators').SMA;
  * Qualquer valor acima de 0.9 indica uma alta. Valores muito acima de 1.5 indicam uma queda de correção
  */
 const config = {
-	short: 10,
+	short: 7,
 	long: 21,
 	thresholds: {
 		min: 0.9,
