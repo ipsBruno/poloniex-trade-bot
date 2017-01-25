@@ -30,7 +30,7 @@ var init = function(){
 		console.log("Saldo em %s: %s ", bot.config.watch.asset ,asset);
 
 					
-		if (buyable) {
+		if (buyable > 1.0) {
 			console.log("Last price %s: %s | Tendencia de alta - Buy: true | Sell: false", bot.getPair(), bot.lastPrice());	
 		} else {
 			console.log("Last price %s: %s | Tendencia de baixa - Buy: false | Sell: true", bot.getPair(), bot.lastPrice());
