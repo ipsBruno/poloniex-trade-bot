@@ -27,6 +27,19 @@ exports.triggerPrices = function() {
 		})
 	})
 }
+
+
+exports.lastPrice = function(callback) {
+	exports.poloniexApi.push(function(session) {
+		session.subscribe("ticker", function(data) {
+			if (data[0] == exports.pairTrade) {
+				callback(exports.pairTrade, data[1]);	
+			}
+		})
+	})
+}
+
+
 /*
  * Essa função serve para pegar o pair atual
  * @return: pair atual
