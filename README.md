@@ -2,7 +2,7 @@
 
 poloniex-trade-bot é um rôbo automático para criar posições de compra/venda na exchange poloniex usando alguns indicadores.
 
-Para rodar e configurar este BOT será necessário conhecimentos intermediários-avançados em programação. Projeto em desenvolvimento
+Para rodar e configurar este BOT será necessário conhecimentos intermediários-avançados em programação. O projeto está em desenvolvimento, qualquer dúvida/bug utilize os issues para nos comunicar
 
 
 ## Configurando
@@ -34,13 +34,14 @@ npm install technicalindicators
 npm install plnx
  ```
  
-Rode este arquivo**  .bat** 
+Rode este arquivo ** .bat** 
 
 ## Rodando
 
-Para rodar. Crie outro arquivo ** .bat**  dentro da pasta do bot com o seguinte:
-
+Para rodar. Crie outro arquivo **.bat**  dentro da pasta do bot com o seguinte:
+```
 node tests.js
 pause
+ ```
 
 Salve e rode o arquivo!
