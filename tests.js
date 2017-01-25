@@ -3,7 +3,7 @@
 
 // Importar os módulos
 var bot = require('./core.js')
-var MACD = require('./indicators/macd.js')
+var SMA = require('./indicators/sma.js')
 
 var trader = bot.config.trader;
 
@@ -21,16 +21,16 @@ var init = function(){
 			candleArr.push(candles[i].close)
 		}
 
-		// Enviar os closes para calcular o MACD
-		candleArr = MACD.calculate( candleArr)
+		// Enviar os closes para calcular o SMA
+		var buyable = SMA.calculate( candleArr)
 
-		console.log(candleArr);
+		console.log( "Simple Moving Average: " , buyable)
 
 		console.log("Saldo em %s: %s ", bot.config.watch.currency ,currency);
 		console.log("Saldo em %s: %s ", bot.config.watch.asset ,asset);
 
 					
-		if (bot.lastPrice() > 900) {
+		if (buyable) {
 			console.log("Last price %s: %s | Tendencia de alta - Buy: true | Sell: false", bot.getPair(), bot.lastPrice());	
 		} else {
 			console.log("Last price %s: %s | Tendencia de baixa - Buy: false | Sell: true", bot.getPair(), bot.lastPrice());
@@ -50,9 +50,9 @@ if (trader.enabled == true){
 		function() {
 
 			if( bot.lastPrice() > 0 &&  bot.getCandles().length > 0) {
-				init(); clearInterval(check);
+				init(); 
 			}	
-		}, 1000)
+		}, 10000)
 } else {
 	console.log("Trader inativo > config.js > trader.enable: false");
 }
