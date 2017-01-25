@@ -6,6 +6,7 @@ exports.pairTicker = {}
 exports.pairTrade = ''
 exports.ordersArr = [];
 exports.candlesData = [];
+exports.balanceVal = []
 /*
  * Essa função serve pra atualizar as ordens em aberto
  * @return: essa função não emite nenhum retorno  
@@ -29,7 +30,28 @@ exports.triggerPrices = function() {
 		})
 	})
 }
+/*
+ * Essa função serve pra conferir o saldo cada segundo
+ * @return: essa função não emite nenhum retorno específico 
+ */
+exports.triggerBalance = function() {
 
+	if (exports.apiKey == '' || exports.apiSecret == '') return false
+
+	exports.poloniexApi.returnCompleteBalances(
+	{
+		key: exports.apiKey,
+		secret: exports.apiSecret
+	}, function(err, data) {
+		var pairs = exports.pairTrade.split('_')
+
+		if( typeof data  !== 'undefined'  && typeof data[pairs[0]] !== 'undefined' && data[pairs[0]] && data[pairs[1]]  && typeof data[pairs[1]] !== 'undefined' ) {
+			exports.balanceVal[pairs[0]]  =  data[pairs[0]].available
+			exports.balanceVal[pairs[1]]  =  data[pairs[1]].available
+		}
+	})
+	return true
+}
 /*
  * Essa função serve pra atualizar os candles em aberto
  * @return: essa função não emite nenhum retorno específico 
@@ -60,6 +82,8 @@ exports.setPair = function(pair) {
 	exports.pairTrade = pair
 	exports.triggerPrices()
 	
+
+
 	setInterval(function b() {
 		exports.triggerCandles()
 		return b
@@ -81,6 +105,12 @@ exports.setCredential = function(api, key) {
 		exports.triggerOrders()
 		return a
 	}(), 2000)
+
+	setInterval(function a() {
+		exports.triggerBalance()
+		return a
+	}(), 2000)
+		
 }
 /*
  * Essa função serve pra atualizar as ordens em aberto
@@ -98,22 +128,14 @@ exports.triggerOrders = function() {
 }
 /*
  * Função para retornar saldo da conta
- * @callback: chamar uma callback com o resultado (err, pair1, pair2)
+ * @coinr: qual moeda para pegar o pair
  */
-exports.balance = function(callback) {
-	if (exports.apiKey == '' || exports.apiSecret == '') return false
-	exports.poloniexApi.returnCompleteBalances(
-	{
-		key: exports.apiKey,
-		secret: exports.apiSecret
-	}, function(err, data) {
-		var pairs = exports.pairTrade.split('_')
+exports.balance = function(coinr) {
 
-		if( typeof data  !== 'undefined'  && typeof data[pairs[0]] !== 'undefined' && data[pairs[0]] && data[pairs[1]]  && typeof data[pairs[1]] !== 'undefined' ) {
-			callback(err, data[pairs[0]].available, data[pairs[1]].available)
-		}
-	})
-	return true
+	if( typeof exports.balanceVal[coinr] === 'undefined')
+		return 0.0;
+
+	return exports.balanceVal[coinr]
 }
 /*
  *
