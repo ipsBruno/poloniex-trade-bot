@@ -15,7 +15,12 @@ const technicalindicators = require('technicalindicators').SMA;
 
 const config = {
   short: 10,
-  long: 21
+  long: 21,
+  thresholds: {
+    down: -0.025,
+    up: 0.025,
+    persistence: 1
+  }
 };
 
 /*
@@ -51,9 +56,9 @@ exports.calculate = function(prices) {
 
 	// pegar últimos valores short/long
 	var lastshort = line1[line1.length-1]
-	var lastlong = line1[line1.length-1]
+	var lastlong = line2[line2.length-1]
 
 	// caso a tendencia de short é maior que a de long
-	// caso for maior que 1 = tendencia de alta. Caso for menor tendencia de baixa
-	return lastshort / lastlong ;
+	// caso for true = tendencia de alta / caso for false tendencia de baixa
+	return lastshort/ lastlong ;
 }
