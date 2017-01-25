@@ -19,7 +19,19 @@ Efetuar a configuração do bot, utilizando o arquivo `config.js`
 	  key: 'xxxxxxxxxxxxxxxxxxx',
 	  secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	}
-	
+
+
+Dentro do arquivo tests.js terá
+
+```
+var mintradeval = 10.0;
+```
+
+10.0 é a quantia em dólares para fazer os trades.
+
+Lembre-se que é necessário ter essa quantia em dólares na sua conta!!
+
+
 ## Preparando
 
 Para rodar estes arquivos é necessário instalar NodeJS v6.3.1
