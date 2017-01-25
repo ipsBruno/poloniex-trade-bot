@@ -54,5 +54,5 @@ exports.calculate = function(prices) {
 	var lastlong = line2[line2.length - 1]
 	// caso a tendencia de short é maior que a de long
 	// caso for true = tendencia de alta / caso for false tendencia de baixa
-	return config.thresholds.max > (lastshort / lastlong) && > (lastshort / lastlong) > config.thresholds.min;
+	return config.thresholds.max > (lastshort / lastlong) && (lastshort / lastlong) > config.thresholds.min;
 }
