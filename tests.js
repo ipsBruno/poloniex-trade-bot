@@ -15,8 +15,8 @@ process.title = '[POLONIEX BOT]'
 // Mandar mensagem indicando inicialização do BOT
 console.log("\033[35m[Info] O bot foi iniciado. Estou analisando mercado agora...")
 
-
-var mintradeval = 10;
+// Valor mínimo em USD para trade (currency)
+var mintradeval = 10.0;
 
 
 var checkAccount = function(){
