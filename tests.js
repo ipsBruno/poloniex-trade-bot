@@ -57,6 +57,7 @@ var manipularOrdens = function() {
 				
 
 				buyPrice = bot.lastPrice()-0.20;
+
 				sellPrice = bot.addpercent(bot.lastPrice(), 0.5)
 
 				buyOrderId = 0
@@ -107,7 +108,7 @@ var manipularOrdens = function() {
 			// verificar se há ordem de venda fechada
 			if ( !bot.isOpen(sellOrderId)) {
 					// caso ordem de venda estiver fechada fazer o trade
-					console.log("\033[32mTrade efetuado com sucesso\033[37m");
+					console.log("\033[34mTrade efetuado com sucesso\033[37m");
 					sellOrderId = -1
 					buyOrderId = -1
 			}
