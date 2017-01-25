@@ -84,6 +84,7 @@ exports.balance = function(callback) {
 	})
 	return true
 }
+
 /*
  *
  * Função para pegar os últimos candles
