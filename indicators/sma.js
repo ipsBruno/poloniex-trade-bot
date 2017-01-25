@@ -21,7 +21,14 @@ const config = {
  * Essa função serve pra calcular o MACD
  * @prices: valores de entrada
  */
-exports.calculate = function(prices) {
+exports.calculate = function(candles) {
+
+	// pegar apenas o close dos candles
+	var prices = []
+	for(var i in candles) {
+		prices.push(candles[i].close)
+	}
+
 	// Criar dois vetores para armazenar os períodos short/long
 	var line1 = []
 	var line2 = []
