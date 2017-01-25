@@ -136,7 +136,7 @@ if (bot.config.trader.enabled){
 				checkAccount()
 				clearInterval(check);
 			}	
-		}, 2500)	
+		}, 10000)	
 } else {
 	console.log("\033[31m[Erro] Trader inativo. Edite config.js para trader.enable: true");
 }
