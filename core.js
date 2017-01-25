@@ -47,7 +47,7 @@ exports.triggerCandles = function() {
 		end: timestamp
 	}, function(err, data){
 		if (err) console.log("Err1", err)		
-		exports.candlesData = data
+		else exports.candlesData = data
 	})
 	return true
 }
@@ -89,10 +89,14 @@ exports.setCredential = function(api, key) {
 exports.triggerOrders = function() {
 	if (exports.apiKey == '' || exports.apiSecret == '') return false
 	exports.openorders(function(err, data) {
-		if (err) console.log("Err2", err)
-		exports.ordersArr = []
-		for (var i in data) {
-			exports.ordersArr.push(data[i])
+		if (err) {
+			console.log("Err2", err)
+		}
+		else {
+			exports.ordersArr = []
+			for (var i in data) {
+				exports.ordersArr.push(data[i])
+			}
 		}
 	})
 	return true
