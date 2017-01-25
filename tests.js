@@ -1,5 +1,5 @@
 // Importar os módulos
-var bot = require('./core.js')
+var BOT = require('./core.js')
 
 var SMA = require('./indicators/sma.js')
 
@@ -13,7 +13,7 @@ process.title = '[POLONIEX BOT]'
 
 
 // Mandar mensagem indicando inicialização do BOT
-console.log("\033[35m[Info] O bot foi iniciado. Estou analisando mercado agora...")
+console.log("\033[35m[Info] O BOT foi iniciado. Estou analisando mercado agora...")
 
 // Valor mínimo em USD para trade (currency)
 var mintradeval = 10.0;
@@ -21,16 +21,16 @@ var mintradeval = 10.0;
 
 var checkAccount = function(){
 	
-	var currency = bot.balance(bot.config.watch.currency)
-	var asset = bot.balance(bot.config.watch.asset)
+	var currency = BOT.balance(BOT.config.watch.currency)
+	var asset = BOT.balance(BOT.config.watch.asset)
 
 	if( currency <  mintradeval) {
 		return console.log("\033[31m[Erro] Você não tem o mínimo em USD para Trades: %s USD", mintradeval)
 	}
 
 
-	console.log("\033[36m[Info] Saldo em %s: %s ", bot.config.watch.currency ,currency);
-	console.log("\033[36m[Info] Saldo em %s: %s ", bot.config.watch.asset ,asset);
+	console.log("\033[36m[Info] Saldo em %s: %s ", BOT.config.watch.currency ,currency);
+	console.log("\033[36m[Info] Saldo em %s: %s ", BOT.config.watch.asset ,asset);
 
 	// caso ele tenha saldo começar a manipular as ordens
 	setInterval( manipularOrdens , 15000 )
@@ -46,19 +46,21 @@ var buyPrice
 var manipularOrdens = function() {
 
 		// Selecionar os close dos candlesticks
-		var candles = bot.getCandles()
+		var candles = BOT.getCandles()
 
 		// Enviar os closes para calcular o SMA
 		var buyable = SMA.calculate(candles)
 
 		// Caso não estiver nenhuma ordem aberta
 		if ( buyOrderId == -1 && sellPrice == -1) { 
-			if (buyable == true && bot.balance(bot.config.watch.currency) > mintradeval) {
+			if (buyable == true && BOT.balance(BOT.config.watch.currency) > mintradeval) {
 				
 
-				buyPrice = bot.lastPrice()-0.20;
+				// remover 0.1% pra comprar
+				buyPrice = BOT.rempercent(BOT.pairTicker.highbid, 0.1)
 
-				sellPrice = bot.addpercent(bot.lastPrice(), 0.5)
+				// adicionar 0.5% pra vender
+				sellPrice = BOT.addpercent(BOT.pairTicker.lowask, 0.5)
 
 				buyOrderId = 0
 
@@ -81,14 +83,16 @@ var manipularOrdens = function() {
 		if( buyOrderId > 0 && sellOrderId == -1) {
 
 			// caso a ordem de compra já foi finalizda
-			if ( !bot.isOpen(buyOrderId)) {
+			if ( !BOT.isOpen(buyOrderId)) {
 				
 
 				sellOrderId = 0
 				buyOrderId = 0
 
 				// criar uma ordem de venda com saldo em btc
-				sellcoin(sellPrice, bot.balance(bot.config.watch.asset), function(err, data) {
+
+				// remover 0.40% pra ajustar as fee
+				sellcoin(sellPrice, BOT.rempercent(mintradeval/buyPrice, 0.4), function(err, data) {
 
 						if(err){
 							sellOrderId = -1
@@ -106,7 +110,7 @@ var manipularOrdens = function() {
 		// caso ambas ordens já foram abertas
 		if( sellOrderId > 0 && buyOrderId == 0) {
 			// verificar se há ordem de venda fechada
-			if ( !bot.isOpen(sellOrderId)) {
+			if ( !BOT.isOpen(sellOrderId)) {
 					// caso ordem de venda estiver fechada fazer o trade
 					console.log("\033[34mTrade efetuado com sucesso\033[37m");
 					sellOrderId = -1
@@ -116,21 +120,21 @@ var manipularOrdens = function() {
 }
 
 
-if (bot.config.trader.enabled){
+if (BOT.config.trader.enabled){
 
-	bot.setCredential(bot.config.trader.key, bot.config.trader.secret);
-	bot.setPair(bot.config.watch.currency + '_' + bot.config.watch.asset);
+	BOT.setCredential(BOT.config.trader.key, BOT.config.trader.secret);
+	BOT.setPair(BOT.config.watch.currency + '_' + BOT.config.watch.asset);
 	
 	var check = setInterval(
 		function() {
-			if(!bot.lastPrice() > 0) {
+			if(!BOT.lastPrice() > 0) {
 				console.log("\033[31mRecebendo informações de preço ..."  );
 			}
-			else if( !(bot.getCandles().length > 0)) {
+			else if( !(BOT.getCandles().length > 0)) {
 				console.log("\033[31mRecebendo informações de candlesticks ..." );
 			}
 			
-			else if(!(bot.balanceVal[bot.config.watch.currency] > 0)) {
+			else if(!(BOT.balanceVal[BOT.config.watch.currency] > 0)) {
 				console.log("\033[31mRecebendo informações da sua conta ..." );
 			}
 			else {
