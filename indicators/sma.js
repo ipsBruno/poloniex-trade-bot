@@ -10,12 +10,14 @@ const technicalindicators = require('technicalindicators').SMA;
 * Configurar os valores indicadores 
 * Para o método SMA
 * @short/long: periodos
-* @thresholds: valores para considerar buy/sell
+* @thresholds: valores para considerar buy/sell. 
+* Qualquer valor acima de 0.9 indica uma alta. Valores muito acima de 1.5 indicam uma queda de correção
 */
 
 const config = {
   short: 10,
-  long: 21
+  long: 21,
+  thresholds: 0.9
 };
 
 /*
@@ -55,5 +57,5 @@ exports.calculate = function(prices) {
 
 	// caso a tendencia de short é maior que a de long
 	// caso for true = tendencia de alta / caso for false tendencia de baixa
-	return lastshort/ lastlong ;
+	return lastshort / lastlong > config.thresholds;
 }
