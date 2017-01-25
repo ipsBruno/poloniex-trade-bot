@@ -3,6 +3,8 @@
 
 // Importar os módulos
 var bot = require('./core.js')
+var MACD = require('./indicators/macd.js')
+
 var trader = bot.config.trader;
 
 var init = function(){
@@ -12,6 +14,18 @@ var init = function(){
 	 		return console.log(err)
 	 	}
 		
+		// Selecionar os close dos candlesticks
+		var candles = bot.getCandles()
+		var candleArr = []
+		for(var i in candles) {
+			candleArr.push(candles[i].close)
+		}
+
+		// Enviar os closes para calcular o MACD
+		candleArr = MACD.calculate( candleArr)
+
+		console.log(candleArr);
+
 		console.log("Saldo em %s: %s ", bot.config.watch.currency ,currency);
 		console.log("Saldo em %s: %s ", bot.config.watch.asset ,asset);
 
@@ -36,5 +50,4 @@ if (trader.enabled == true){
 } else {
 	console.log("Trader inativo > config.js > trader.enable: false");
 }
-
 
