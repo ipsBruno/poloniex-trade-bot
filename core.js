@@ -52,6 +52,7 @@ exports.triggerBalance = function() {
 	})
 	return true
 }
+
 /*
  * Essa função serve pra atualizar os candles em aberto
  * @return: essa função não emite nenhum retorno específico 
