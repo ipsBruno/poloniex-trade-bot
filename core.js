@@ -1,9 +1,11 @@
 exports.poloniexApi = require("plnx")
+exports.config = require('./config.js');
 exports.apiKey = ''
 exports.apiSecret = ''
 exports.pairTicker = {}
 exports.pairTrade = ''
 exports.ordersArr = [];
+exports.candlesData = [];
 /*
  * Essa função serve pra atualizar as ordens em aberto
  * @return: essa função não emite nenhum retorno  
@@ -28,25 +30,28 @@ exports.triggerPrices = function() {
 	})
 }
 
-
-exports.lastPrice = function(callback) {
-	exports.poloniexApi.push(function(session) {
-		session.subscribe("ticker", function(data) {
-			if (data[0] == exports.pairTrade) {
-				callback(exports.pairTrade, data[1]);	
-			}
-		})
-	})
-}
-
-
 /*
- * Essa função serve para pegar o pair atual
- * @return: pair atual
+ * Essa função serve pra atualizar os candles em aberto
+ * @return: essa função não emite nenhum retorno específico 
  */
-exports.getPair = function() {
-	return exports.pairTrade;
+exports.triggerCandles = function() {
+
+	var timestamp = Date.now() / 1000 | 0
+
+	var history = exports.config.tradingAdvisor.candleSize*exports.config.tradingAdvisor.historySize
+
+	exports.poloniexApi.returnChartData({
+		currencyPair: exports.config.watch.currency + '_' + exports.config.watch.asset,
+		period: exports.config.tradingAdvisor.candleSize,
+		start: timestamp-history,
+		end: timestamp
+	}, function(err, data){
+		if (err) console.log(err)		
+		exports.candlesData = data
+	})
+	return true
 }
+
 /*
  * Essa função serve para setar o pair
  * @return: essa função não emite nenhum retorno  
@@ -59,12 +64,23 @@ exports.setPair = function(pair) {
  * Essa função serve colocar a api/secret do código
  * @return: essa função não emite nenhum retorno  
  */
+/*
+ * Essa função serve colocar a api/secret do código
+ * @return: essa função não emite nenhum retorno  
+ */
 exports.setCredential = function(api, key) {
 	exports.apiKey = api
 	exports.apiSecret = key
-	setInterval(function() {
+
+	setInterval(function a() {
 		exports.triggerOrders()
-	}, 1500)
+		return a
+	}(), 1500)
+
+	setInterval(function b() {
+		exports.triggerCandles()
+		return b
+	}(), 5000)
 }
 /*
  * Essa função serve pra atualizar as ordens em aberto
@@ -95,31 +111,6 @@ exports.balance = function(callback) {
 		var pairs = exports.pairTrade.split('_')
 		callback(err, data[pairs[0]].available, data[pairs[1]].available)
 	})
-	return true
-}
-
-/*
- *
- * Função para pegar os últimos candles
- * @pair: qual pair para pegar os candles
- * @period: quantos candles retornar
- * @candles: qual tempo para os candles 300 para 5 min etc
- * @callback: retornar todos candles
- *
- */
-exports.getCandles = function(pair, period, candles, callback) {
-
-	var timestamp = Date.now() / 1000 | 0
-
-	var history = candles*period
-
-	exports.poloniexApi.returnChartData({
-		currencyPair: pair,
-		period: candles,
-		start: timestamp-history,
-		end: timestamp
-	}, callback)
-
 	return true
 }
 /*
@@ -181,6 +172,27 @@ exports.sellcoin = function(cotacao, quantia, callback) {
 		callback(err, data)
 	})
 	return true
+}
+/*
+ * Essa função serve para pegar o último preço atual
+ * @return: pair atual
+ */
+exports.lastPrice = function() {
+	return exports.pairTrade.last;
+}
+/*
+ * Essa função serve para pegar o pair atual
+ * @return: pair atual
+ */
+exports.getPair = function() {
+	return exports.pairTrade;
+}
+/*
+ * Função para pegar os últimos candles
+ * Retorna os últimos candles com base no config
+ */
+exports.getCandles = function() {
+	return exports.candlesData
 }
 /*
  * Função: isOpen verifica se a ordem está abert
