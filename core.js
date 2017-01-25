@@ -244,3 +244,12 @@ exports.isOpen = function(orderid) {
 exports.addpercent = function(val, percent) {
 	return val + (val / 100 * percent);
 }
+
+/*
+ * Função: rempercent
+ * @val: valor a ser removido porcentagem
+ * @percent: quanto de porcentagem remover
+ */
+exports.rempercent = function(val, percent) {
+	return val - (val / 100 * percent);
+}
