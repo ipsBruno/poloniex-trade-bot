@@ -95,12 +95,18 @@ exports.balance = function(callback) {
  *
  */
 exports.getCandles = function(pair, period, candles, callback) {
+
+	var timestamp = Date.now() / 1000 | 0
+
+	var history = candles*period
+
 	exports.poloniexApi.returnChartData({
 		currencyPair: pair,
 		period: candles,
-		start: (new Date().getTime() / 1000) - (candles * period),
-		end: new Date().getTime()
+		start: timestamp-history,
+		end: timestamp
 	}, callback)
+
 	return true
 }
 /*
