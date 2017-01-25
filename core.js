@@ -88,16 +88,11 @@ exports.setCredential = function(api, key) {
  */
 exports.triggerOrders = function() {
 	if (exports.apiKey == '' || exports.apiSecret == '') return false
-	exports.openorders(function(err, data) {
-		if (err) {
-			console.log("Err2", err)
-		}
-		else {
-			exports.ordersArr = []
-			for (var i in data) {
-				exports.ordersArr.push(data[i])
-			}
-		}
+	exports.openorders(function(data) {
+		exports.ordersArr = []
+		for (var i in data) {
+			exports.ordersArr.push(data[i])
+		}	
 	})
 	return true
 }
@@ -113,7 +108,9 @@ exports.balance = function(callback) {
 		secret: exports.apiSecret
 	}, function(err, data) {
 		var pairs = exports.pairTrade.split('_')
-		callback(err, data[pairs[0]].available, data[pairs[1]].available)
+
+		if( typeof data[pairs[0]] !== 'undefined' && data[pairs[0]] && data[pairs[1]]  && typeof data[pairs[1]] !== 'undefined' )
+			callback(err, data[pairs[0]].available, data[pairs[1]].available)
 	})
 	return true
 }
@@ -124,6 +121,7 @@ exports.balance = function(callback) {
  *
  */
 exports.openorders = function(callback) {
+
 	if (exports.apiKey == '' || exports.apiSecret == '' || exports.pairTrade == '') return false
 
 	exports.poloniexApi.returnOpenOrders(
@@ -132,7 +130,8 @@ exports.openorders = function(callback) {
 		secret: exports.apiSecret,
 		currencyPair: exports.pairTrade
 	}, function(err, data) {
-		callback(err, data)
+		if(!err)
+			callback(data)
 	})
 	return true
 }
