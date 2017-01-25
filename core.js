@@ -46,7 +46,7 @@ exports.triggerCandles = function() {
 		start: timestamp-history,
 		end: timestamp
 	}, function(err, data){
-		if (err) console.log(err)		
+		if (err) console.log("Err1", err)		
 		exports.candlesData = data
 	})
 	return true
@@ -59,6 +59,11 @@ exports.triggerCandles = function() {
 exports.setPair = function(pair) {
 	exports.pairTrade = pair
 	exports.triggerPrices()
+	
+	setInterval(function b() {
+		exports.triggerCandles()
+		return b
+	}(), 2000)
 }
 /*
  * Essa função serve colocar a api/secret do código
@@ -75,12 +80,7 @@ exports.setCredential = function(api, key) {
 	setInterval(function a() {
 		exports.triggerOrders()
 		return a
-	}(), 1500)
-
-	setInterval(function b() {
-		exports.triggerCandles()
-		return b
-	}(), 5000)
+	}(), 2000)
 }
 /*
  * Essa função serve pra atualizar as ordens em aberto
@@ -89,7 +89,7 @@ exports.setCredential = function(api, key) {
 exports.triggerOrders = function() {
 	if (exports.apiKey == '' || exports.apiSecret == '') return false
 	exports.openorders(function(err, data) {
-		if (err) console.log(err)
+		if (err) console.log("Err2", err)
 		exports.ordersArr = []
 		for (var i in data) {
 			exports.ordersArr.push(data[i])
@@ -120,7 +120,8 @@ exports.balance = function(callback) {
  *
  */
 exports.openorders = function(callback) {
-	if (exports.apiKey == '' || exports.apiSecret == '') return false
+	if (exports.apiKey == '' || exports.apiSecret == '' || exports.pairTrade == '') return false
+
 	exports.poloniexApi.returnOpenOrders(
 	{
 		key: exports.apiKey,
@@ -178,7 +179,7 @@ exports.sellcoin = function(cotacao, quantia, callback) {
  * @return: pair atual
  */
 exports.lastPrice = function() {
-	return exports.pairTrade.last;
+	return exports.pairTicker.last;
 }
 /*
  * Essa função serve para pegar o pair atual
