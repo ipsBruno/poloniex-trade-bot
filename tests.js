@@ -46,7 +46,13 @@ if (trader.enabled == true){
 	
 	// O BOT inicia em 5 segundos
 	// Para ter tempo de pegar todas informações com ws socket
-	setTimeout(init, 5000);
+	var check = setInterval(
+		function() {
+
+			if( bot.lastPrice() > 0 &&  bot.getCandles().length > 0) {
+				init(); clearInterval(check);
+			}	
+		}, 1000)
 } else {
 	console.log("Trader inativo > config.js > trader.enable: false");
 }
