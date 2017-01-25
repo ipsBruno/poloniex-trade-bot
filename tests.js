@@ -1,5 +1,3 @@
-
-
 // Importar os módulos
 var bot = require('./core.js')
 
