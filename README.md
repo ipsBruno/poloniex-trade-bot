@@ -34,7 +34,7 @@ npm install technicalindicators
 npm install plnx
  ```
  
-Rode este arquivo ** .bat** 
+Rode este arquivo **.bat** 
 
 ## Rodando
 
