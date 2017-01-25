@@ -97,7 +97,7 @@ exports.balance = function(callback) {
 exports.getCandles = function(pair, period, candles, callback) {
 	exports.poloniexApi.returnChartData({
 		currencyPair: pair,
-		period: candle,
+		period: candles,
 		start: (new Date().getTime() / 1000) - (candles * period),
 		end: new Date().getTime()
 	}, callback)
