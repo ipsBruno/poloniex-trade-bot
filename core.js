@@ -109,8 +109,9 @@ exports.balance = function(callback) {
 	}, function(err, data) {
 		var pairs = exports.pairTrade.split('_')
 
-		if( typeof data[pairs[0]] !== 'undefined' && data[pairs[0]] && data[pairs[1]]  && typeof data[pairs[1]] !== 'undefined' )
+		if( typeof data  !== 'undefined'  && typeof data[pairs[0]] !== 'undefined' && data[pairs[0]] && data[pairs[1]]  && typeof data[pairs[1]] !== 'undefined' ) {
 			callback(err, data[pairs[0]].available, data[pairs[1]].available)
+		}
 	})
 	return true
 }
