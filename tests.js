@@ -18,25 +18,6 @@ console.log("\033[35m[Info] O BOT foi iniciado. Estou analisando mercado agora..
 // Valor mínimo em USD para trade (currency)
 var mintradeval = 10.0;
 
-
-var checkAccount = function(){
-	
-	var currency = BOT.balance(BOT.config.watch.currency)
-	var asset = BOT.balance(BOT.config.watch.asset)
-
-	if( currency <  mintradeval) {
-		return console.log("\033[31m[Erro] Você não tem o mínimo em USD para Trades: %s USD", mintradeval)
-	}
-
-
-	console.log("\033[36m[Info] Saldo em %s: %s ", BOT.config.watch.currency ,currency);
-	console.log("\033[36m[Info] Saldo em %s: %s ", BOT.config.watch.asset ,asset);
-
-	// caso ele tenha saldo começar a manipular as ordens
-	setInterval( manipularOrdens , 15000 )
-}
-
-
 var buyOrderId = -1
 var sellOrderId = -1
 
@@ -49,11 +30,13 @@ var manipularOrdens = function() {
 		var candles = BOT.getCandles()
 
 		// Enviar os closes para calcular o SMA
-		var buyable = SMA.calculate(candles)
+		//var buyable = SMA.calculate(candles)
+		
+		var buyable = true
 
 		// Caso não estiver nenhuma ordem aberta
 		if ( buyOrderId == -1 && sellPrice == -1) { 
-			if (buyable == true && BOT.balance(BOT.config.watch.currency) > mintradeval) {
+			if (buyable == true) {
 				
 
 				// remover 0.1% pra comprar
@@ -118,6 +101,27 @@ var manipularOrdens = function() {
 			}
 		}
 }
+
+
+
+
+var checkAccount = function(){
+	
+	var currency = BOT.balance(BOT.config.watch.currency)
+	var asset = BOT.balance(BOT.config.watch.asset)
+
+	if( currency <  mintradeval) {
+		return console.log("\033[31m[Erro] Você não tem o mínimo em USD para Trades: %s USD", mintradeval)
+	}
+
+
+	console.log("\033[36m[Info] Saldo em %s: %s ", BOT.config.watch.currency ,currency);
+	console.log("\033[36m[Info] Saldo em %s: %s ", BOT.config.watch.asset ,asset);
+
+	// caso ele tenha saldo começar a manipular as ordens
+	setInterval( manipularOrdens , 15000 )
+}
+
 
 
 if (BOT.config.trader.enabled){
