@@ -15,12 +15,7 @@ const technicalindicators = require('technicalindicators').SMA;
 
 const config = {
   short: 10,
-  long: 21,
-  thresholds: {
-    down: -0.025,
-    up: 0.025,
-    persistence: 1
-  }
+  long: 21
 };
 
 /*
