@@ -24,13 +24,10 @@ var init = function(){
 		// Enviar os closes para calcular o SMA
 		var buyable = SMA.calculate( candleArr)
 
-		console.log( "\n\n\n\n\nSimple Moving Average: " , buyable)
-
 		console.log("Saldo em %s: %s ", bot.config.watch.currency ,currency);
 		console.log("Saldo em %s: %s ", bot.config.watch.asset ,asset);
-
 					
-		if (buyable > 1.0) {
+		if (buyable == true) {
 			console.log("Last price %s: %s | Tendencia de alta - Buy: true | Sell: false", bot.getPair(), bot.lastPrice());	
 		} else {
 			console.log("Last price %s: %s | Tendencia de baixa - Buy: false | Sell: true", bot.getPair(), bot.lastPrice());
