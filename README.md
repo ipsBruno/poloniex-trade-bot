@@ -47,7 +47,7 @@ Lembre-se que é necessário ter essa quantia em dólares na sua conta!!
 
 ## Rodando
 
-Para rodar. Crie outro arquivo **.bat**  dentro da pasta do bot com o seguinte:
+Para rodar. Crie um arquivo **.bat**  dentro da pasta do bot com o seguinte:
 ```
 node tests.js
 pause
