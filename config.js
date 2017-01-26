@@ -14,9 +14,9 @@ config.tradingAdvisor = {
 
 
 config.trader = {
-  enabled: false,
-  key: 'xxxxxxxxxx',
-  secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
-}
+		  enabled: false,
+		  key: 'xxxxxxxxxx',
+		  secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
+		}
 
 module.exports = config;
