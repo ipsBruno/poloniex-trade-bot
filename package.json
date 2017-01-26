@@ -1,0 +1,23 @@
+{
+  "name": "Trade-Bot",
+  "version": "0.0.2",
+  "description": "A bitcoin trading bot for auto trading.",
+  "keywords": [
+    "trading",
+    "bot",
+    "bitcoin"
+  ],
+  "author": "Bruno da Silva <email@brunodasilva.com>",
+  "dependencies": {
+    "plnx": "0.0.x",
+    "technicalindicators": "0.2.x"
+  },
+  "engines": {
+    "node": ">=6.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ipsBruno/poloniex-trade-bot.git"
+  }
+}
