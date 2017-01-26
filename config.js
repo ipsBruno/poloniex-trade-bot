@@ -1,6 +1,7 @@
 var config = {};
 
 config.watch = {
+  exchange: 'poloniex',
   currency: 'USDT',
   asset: 'BTC'
 }
@@ -13,9 +14,9 @@ config.tradingAdvisor = {
 
 
 config.trader = {
-  enabled: true,
-  key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-  secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  enabled: false,
+  key: 'xxxxxxxxxx',
+  secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
 }
 
 module.exports = config;

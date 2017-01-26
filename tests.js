@@ -1,5 +1,8 @@
 // Importar os módulos
-var BOT = require('./core.js')
+
+
+var config = require('./config.js');
+var BOT = require('./exchanges/' + config.watch.exchange + '.js');
 
 var SMA = require('./indicators/sma.js')
 
