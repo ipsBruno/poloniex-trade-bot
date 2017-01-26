@@ -17,7 +17,6 @@ Rodar o seguinte comando na pasta do BOT:
 npm install
  ```
  
-Rode este arquivo **.bat** 
 
 ## Configurando
 
@@ -34,7 +33,7 @@ Efetuar a configuração do bot, utilizando o arquivo `config.js`
 	  secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	}
 
-
+ 
 Dentro do arquivo tests.js terá
 
 ```
