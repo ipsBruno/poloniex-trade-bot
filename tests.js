@@ -24,20 +24,20 @@ var sellOrderId = -1
 var sellPrice 
 var buyPrice 
 
-var manipularOrdens = function() {
+function manipularOrdens() {
 
 		// Selecionar os close dos candlesticks
 		var candles = BOT.getCandles()
 
 		// Enviar os closes para calcular o SMA
-		//var buyable = SMA.calculate(candles)
+		var buyable = SMA.calculate(candles)
 		
-		var buyable = true
+		//var buyable = true
 
 		// Caso não estiver nenhuma ordem aberta
-		if ( buyOrderId == -1 && sellPrice == -1) { 
+		if ( buyOrderId == -1 && sellOrderId == -1) { 
+
 			if (buyable == true) {
-				
 
 				// remover 0.1% pra comprar
 				buyPrice = BOT.rempercent(BOT.pairTicker.highbid, 0.1)
@@ -54,6 +54,7 @@ var manipularOrdens = function() {
 							return console.log("\033[31mBuyError", err)
 						}
 						
+
 						buyOrderId = data.orderNumber
 
 						console.log("\033[32mComprando\033[37m | Price: " + buyPrice );
@@ -105,7 +106,7 @@ var manipularOrdens = function() {
 
 
 
-var checkAccount = function(){
+function checkAccount(){
 	
 	var currency = BOT.balance(BOT.config.watch.currency)
 	var asset = BOT.balance(BOT.config.watch.asset)
@@ -119,7 +120,7 @@ var checkAccount = function(){
 	console.log("\033[36m[Info] Saldo em %s: %s ", BOT.config.watch.asset ,asset);
 
 	// caso ele tenha saldo começar a manipular as ordens
-	setInterval( manipularOrdens , 15000 )
+	setInterval( function c(){ manipularOrdens(); return c; }()  , 15000 )
 }
 
 
