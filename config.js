@@ -1,5 +1,5 @@
 var config = {};
-
+ 
 config.watch = {
   exchange: 'poloniex',
   currency: 'USDT',

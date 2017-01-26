@@ -1,6 +1,6 @@
 // Importar os módulos
 
-
+ 
 var config = require('./config.js');
 var BOT = require('./exchanges/' + config.watch.exchange + '.js');
 

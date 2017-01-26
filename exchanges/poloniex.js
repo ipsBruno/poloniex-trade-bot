@@ -7,7 +7,7 @@ exports.pairTrade = ''
 exports.ordersArr = [];
 exports.candlesData = [];
 exports.balanceVal = []
-/*
+/* 
  * Essa função serve pra atualizar as ordens em aberto
  * @return: essa função não emite nenhum retorno  
  */

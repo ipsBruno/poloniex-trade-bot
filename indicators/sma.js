@@ -1,4 +1,4 @@
-/*
+/* 
  * Carregar SMA da biblioteca technicalindicators
  */
 const technicalindicators = require('technicalindicators').SMA;
