@@ -47,7 +47,7 @@ function manipularOrdens() {
 
 				buyOrderId = 0
 
-				buycoin(buyPrice, mintradeval/buyPrice, function(err, data) {
+				BOT.buycoin(buyPrice, mintradeval/buyPrice, function(err, data) {
 
 						if(err){
 							buyOrderId = -1
@@ -76,7 +76,7 @@ function manipularOrdens() {
 				// criar uma ordem de venda com saldo em btc
 
 				// remover 0.40% pra ajustar as fee
-				sellcoin(sellPrice, BOT.rempercent(mintradeval/buyPrice, 0.4), function(err, data) {
+				BOT.sellcoin(sellPrice, BOT.rempercent(mintradeval/buyPrice, 0.4), function(err, data) {
 
 						if(err){
 							sellOrderId = -1
