@@ -40,7 +40,7 @@ function manipularOrdens() {
 			if (buyable == true) {
 
 				// remover 0.1% pra comprar
-				buyPrice = BOT.rempercent(BOT.pairTicker.highbid, 0.1)
+				buyPrice = BOT.rempercent(BOT.pairTicker.highbid, 0.05)
 
 				// adicionar 0.5% pra vender
 				sellPrice = BOT.addpercent(BOT.pairTicker.lowask, 0.5)
@@ -57,7 +57,7 @@ function manipularOrdens() {
 
 						buyOrderId = data.orderNumber
 
-						console.log("\033[32mComprando\033[37m | Price: " + buyPrice );
+						console.log("\033[32mComprando\033[37m | Preço: " + buyPrice );
 				})				
 			}
 		}
@@ -86,7 +86,7 @@ function manipularOrdens() {
 						
 						sellOrderId = data.orderNumber
 
-						console.log("\033[31mVendendo\033[37m | Price: " + sellPrice );
+						console.log("\033[31mVendendo\033[37m | Preço: " + sellPrice );
 				})	
 			}
 		}
