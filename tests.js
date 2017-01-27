@@ -116,7 +116,7 @@ function checkAccount(){
 	var asset = BOT.balance(BOT.config.watch.asset)
 
 	if( currency <  BOT.config.trader.value) {
-		return console.log("\033[31m[Erro] Você não tem o mínimo em %s para Trades: %s USD",BOT.config.watch.currency, BOT.config.trader.value)
+		return console.log("\033[31m[Erro] Você não tem o mínimo  para Trades | MIN %s: %s",BOT.config.watch.currency, BOT.config.trader.value)
 	}
 
 
