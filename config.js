@@ -32,6 +32,7 @@ config.tradingAdvisor = {
 config.EMASMA = {
 	ema: 10,
 	sma: 45,
+	enable: true, //ainda sem utilizade
 	thresholds: {
 		min: 0.9,
 		max: 1.1
@@ -48,6 +49,7 @@ config.MACD = {
   short: 10,
   long: 21,
   signal: 9,
+  enable: true, //ainda sem utilizade
   thresholds: {
     down: -0.025,
     up: 0.025,
@@ -64,6 +66,7 @@ config.MACD = {
  */
 config.RSI =  {
 	period: 14,
+	enable: true, //ainda sem utilizade
 	thresholds: {
 		min: 5,
 		max: 40
@@ -79,6 +82,7 @@ config.RSI =  {
 config.SMA =  {
 	short: 7,
 	long: 21,
+	enable: true, //ainda sem utilizade
 	thresholds: {
 		min: 0.9,
 		max: 1.5

@@ -28,6 +28,22 @@ var buyPrice
 
 var debug = false
 
+///Testando função para utilizar indicadores em conjunto
+//TODO: Contruir lógica para utilização dos indicadores ativos
+//TODO: Incluir uma configuração de enable no config para cada indicador
+function calculate(candles){
+	var upSMA, upMACD, upRSI, upEMASMA;
+	
+	console.log(upSMA, upMACD, upRSI, upEMASMA);
+	
+	if (config.SMA.enable = true) upSMA = SMA.calculate(candles);
+	if (config.MACD.enable = true) upMACD = MACD.calculate(candles);
+	if (config.RSI.enable = true) upRSI = RSI.calculate(candles);
+	if (config.EMASMA.enable = true) upEMASMA = EMASMA.calculate(candles);
+	
+	console.log(upSMA, upMACD, upRSI, upEMASMA);
+}
+
 
 function manipularOrdens() {
 		// Selecionar os close dos candlesticks
@@ -39,6 +55,9 @@ function manipularOrdens() {
 		//var buyable = MACD.calculate(candles)
 		//var buyable = RSI.calculate(candles)
 		var buyable = EMASMA.calculate(candles)
+		
+		//TODO:Validar função
+		//calculate(candles);
 		
 		//var buyable = true
 
