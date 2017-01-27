@@ -39,6 +39,9 @@ Efetuar a configuração do bot, utilizando o arquivo `config.js`
 
 Lembre-se que é necessário ter essa quantia em dólares na sua conta!!
 
+Não se esqueça de trocar os xxx e xxx (key,secret) para a key e secret API da sua conta Poloniex. Dentro das aspas, sempre.
+
+
 
 ## Rodando
 
