@@ -3,9 +3,9 @@ var config = {};
 //Configuração de Key e Secret da Exchange
 config.trader = {
 		value: 10.0,
-		enabled: true,
-		key: '0E5K82AW-7G0N6YHA-P63IBXA3-X2TZ3FTT',
-		secret: '80eb86df8452eccf49707f63bd6547750888003ab5dca8a2dc90c556c37401548283f7a9cdeee240bc594b770410658823c3204be255f482ebae04c70c36fa45',
+		enabled: false,
+		key: 'xxxxxxxxxx',
+		secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
 	}
 
 //Configuração da exchange e do Mercado
