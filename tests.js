@@ -18,9 +18,6 @@ process.title = '[POLONIEX BOT]'
 // Mandar mensagem indicando inicialização do BOT
 console.log("\033[35m[Info] O BOT foi iniciado. Estou analisando mercado agora...")
 
-// Valor mínimo em USD para trade (currency)
-var mintradeval = 10.0;
-
 var buyOrderId = -1
 var sellOrderId = -1
 
@@ -50,7 +47,7 @@ function manipularOrdens() {
 
 				buyOrderId = 0
 
-				BOT.buycoin(buyPrice, mintradeval/buyPrice, function(err, data) {
+				BOT.buycoin(buyPrice, BOT.config.trader.value/buyPrice, function(err, data) {
 
 						if(err){
 							buyOrderId = -1
@@ -79,7 +76,7 @@ function manipularOrdens() {
 				// criar uma ordem de venda com saldo em btc
 
 				// remover 0.40% pra ajustar as fee
-				BOT.sellcoin(sellPrice, BOT.rempercent(mintradeval/buyPrice, 0.4), function(err, data) {
+				BOT.sellcoin(sellPrice, BOT.rempercent(BOT.config.trader.value/buyPrice, 0.4), function(err, data) {
 
 						if(err){
 							sellOrderId = -1
@@ -114,8 +111,8 @@ function checkAccount(){
 	var currency = BOT.balance(BOT.config.watch.currency)
 	var asset = BOT.balance(BOT.config.watch.asset)
 
-	if( currency <  mintradeval) {
-		return console.log("\033[31m[Erro] Você não tem o mínimo em USD para Trades: %s USD", mintradeval)
+	if( currency <  BOT.config.trader.value) {
+		return console.log("\033[31m[Erro] Você não tem o mínimo em USD para Trades: %s USD", BOT.config.trader.value)
 	}
 
 
