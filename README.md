@@ -4,19 +4,18 @@ poloniex-trade-bot é um rôbo automático para criar posições de compra/venda
 
 Para rodar e configurar este BOT será necessário conhecimentos intermediários-avançados em programação. O projeto está em desenvolvimento, qualquer dúvida/bug utilize os issues para nos comunicar
 
-## Preparando
+## Instalando
 
 Para rodar estes arquivos é necessário instalar NodeJS v6.3.1
 
 
-Após isto é necessário instalar as bibliotecas plnx e technicalindicators
-
-Rodar o seguinte comando na pasta do BOT: 
+Após instalar NodeJS v6.3.1 vá até a pasta do BOT e dê dois cliques no arquivo
 
 ```
-npm install
+install.bat
  ```
  
+Aguarde a instalação ...
 
 ## Configurando
 
@@ -28,29 +27,24 @@ Efetuar a configuração do bot, utilizando o arquivo `config.js`
 	}
 	
 	config.trader = {
+	  value: 10.0,	
 	  enabled: false,
 	  key: 'xxxxxxxxxxxxxxxxxxx',
 	  secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	}
 
  
-Dentro do arquivo tests.js terá
-
-```
-var mintradeval = 10.0;
-```
-
-10.0 é a quantia em dólares para fazer os trades.
+10.0 é a quantia em dólares ou USDT (currency que você definir) para fazer os trades
 
 Lembre-se que é necessário ter essa quantia em dólares na sua conta!!
 
 
 ## Rodando
 
-Para rodar. Crie um arquivo **.bat**  dentro da pasta do bot com o seguinte:
-```
-node tests.js
-pause
- ```
+Para rodar seu bot, salve os arquivos configurados
 
-Salve e rode o arquivo!
+E dê dois cliques em:
+
+**run.bat**
+
+Seu BOT está pronto para uso.
