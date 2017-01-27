@@ -66,9 +66,9 @@ exports.calculate = function(candles) {
 	var trend = config.thresholds.max > (lastema / lastsma) && (lastema / lastsma) > config.thresholds.min;
 	
 	if (trend) {
-		console.log('\033[37m [SMA] Detectando tendencia de alta | max: %s | min: %s | lastshort/lastlong: %s',config.thresholds.max ,config.thresholds.min,lastshort/lastlong);
+		console.log('\033[37m [EMA/SMA] Detectando tendencia de alta | max: %s | min: %s | ema/sma: %s',config.thresholds.max ,config.thresholds.min, (lastema / lastsma));
 	} else {
-		console.log('\033[37m [SMA] Detectando tendencia de baixa | max: %s | min: %s | lastshort/lastlong: %s',config.thresholds.max ,config.thresholds.min,lastshort/lastlong);
+		console.log('\033[37m [EMA/SMA] Detectando tendencia de baixa | max: %s | min: %s | ema/sma: %s',config.thresholds.max ,config.thresholds.min, (lastema / lastsma));
 	}
 
 	return trend;
