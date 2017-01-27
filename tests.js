@@ -1,6 +1,4 @@
 // Importar os módulos
-
- 
 var config = require('./config.js');
 var BOT = require('./exchanges/' + config.watch.exchange + '.js');
 
@@ -24,6 +22,7 @@ var sellOrderId = -1
 var sellPrice 
 var buyPrice 
 
+var debug = false
 
 
 function manipularOrdens() {
@@ -58,7 +57,8 @@ function manipularOrdens() {
 
 						if(err){
 							buyOrderId = -1
-							return console.log("\033[31mBuyError", err)
+							if(debug) console.log("\033[31mBuyError", err)
+							return false
 						}
 						
 
@@ -86,7 +86,9 @@ function manipularOrdens() {
 						if(err){
 							sellOrderId = -1
 							buyOrderId = 1
-							return console.log("\033[31mSellError", err)
+							if(debug) console.log("\033[31mSellError", err)
+							return false
+								
 						}
 						
 						sellOrderId = data.orderNumber
