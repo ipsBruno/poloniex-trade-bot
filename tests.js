@@ -24,8 +24,9 @@ var sellOrderId = -1
 var sellPrice 
 var buyPrice 
 
-function manipularOrdens() {
 
+
+function manipularOrdens() {
 		// Selecionar os close dos candlesticks
 		var candles = BOT.getCandles()
 
@@ -39,13 +40,19 @@ function manipularOrdens() {
 
 			if (buyable == true) {
 
-				// remover 0.1% pra comprar
-				buyPrice = BOT.rempercent(BOT.pairTicker.highbid, 0.05)
+				// remover 0.1% p/ comprar
+				buyPrice = parseFloat(BOT.rempercent(parseFloat(BOT.pairTicker.highbid), 0.1))
+				buyPrice = buyPrice.toFixed(3)
 
-				// adicionar 0.5% pra vender
-				sellPrice = BOT.addpercent(BOT.pairTicker.lowask, 0.5)
+				// adicionar 0.4% pra vender
+				sellPrice = parseFloat(BOT.addpercent(parseFloat(BOT.pairTicker.lowask), 0.2))
+				sellPrice = sellPrice.toFixed(3)
 
 				buyOrderId = 0
+
+				// ajustar as fee
+				bitcoinsVal =  parseFloat(BOT.rempercent(parseFloat(BOT.config.trader.value/buyPrice), 0.25))
+				bitcoinsVal = bitcoinsVal.toFixed(8)
 
 				BOT.buycoin(buyPrice, BOT.config.trader.value/buyPrice, function(err, data) {
 
@@ -74,9 +81,7 @@ function manipularOrdens() {
 				buyOrderId = 0
 
 				// criar uma ordem de venda com saldo em btc
-
-				// remover 0.40% pra ajustar as fee
-				BOT.sellcoin(sellPrice, BOT.rempercent(BOT.config.trader.value/buyPrice, 0.4), function(err, data) {
+				BOT.sellcoin(parseFloat(BOT.addpercent(parseFloat(sellPrice), 0.25)).toFixed(2), bitcoinsVal, function(err, data) {
 
 						if(err){
 							sellOrderId = -1
@@ -102,7 +107,6 @@ function manipularOrdens() {
 			}
 		}
 }
-
 
 
 
