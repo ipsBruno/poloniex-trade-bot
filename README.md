@@ -22,6 +22,7 @@ Aguarde a instalação ...
 Efetuar a configuração do bot, utilizando o arquivo `config.js`
 	
 	config.watch = {
+	 exchange: 'poloniex',
 	 currency: 'USDT',
 	 asset: 'BTC'
 	}
