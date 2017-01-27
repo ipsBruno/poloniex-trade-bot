@@ -3,6 +3,10 @@ var config = require('./config.js');
 var BOT = require('./exchanges/' + config.watch.exchange + '.js');
 
 var SMA = require('./indicators/sma.js')
+var MACD = require('./indicators/macd.js')
+var RSI = require('./indicators/rsi.js')
+var EMASMA = require('./indicators/emasma.js')
+
 
 
 //Limpar tela de console
@@ -30,7 +34,11 @@ function manipularOrdens() {
 		var candles = BOT.getCandles()
 
 		// Enviar os closes para calcular o SMA
-		var buyable = SMA.calculate(candles)
+		//TODO: Montar uma lógica para ativar e desativar os indicadores pelo config.js
+		//var buyable = SMA.calculate(candles)
+		//var buyable = MACD.calculate(candles)
+		//var buyable = RSI.calculate(candles)
+		var buyable = EMASMA.calculate(candles)
 		
 		//var buyable = true
 
