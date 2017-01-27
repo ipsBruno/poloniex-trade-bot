@@ -23,9 +23,8 @@ config.tradingAdvisor = {
 
 //Configuração dos Indicadores
 
-/*
- * Configurar os valores indicadores 
- * Para o método EMA/SMA
+/* 
+ * Método EMA/SMA
  * @ema/sma: periodos para divisão ema/sma
  * @thresholds: valores para considerar buy/sell. 
  * Qualquer valor acima de 0.9 indica uma alta. Valores muito acima de 1.2 indicam uma queda de correção
@@ -40,8 +39,7 @@ config.EMASMA = {
 };
 
 /*
-* Configurar os valores indicadores 
-* Para o método MACD
+* Método MACD
 * @short/long: periodos
 * @signal: signal p/ macd 
 * @thresholds: valores para considerar buy/sell
@@ -59,8 +57,7 @@ config.MACD = {
 
 
 /*
- * Configurar os valores indicadores 
- * Para o método RSI
+ * Método RSI
  * @period: periodos
  * @thresholds: valores para considerar buy/sell. 
  * Qualquer valor acima de 70 indica uma baixa. Valores abaixo de 35 indicam alta
@@ -74,8 +71,7 @@ config.RSI =  {
 };
 
 /*
- * Configurar os valores indicadores 
- * Para o método SMA
+ * Método SMA
  * @short/long: periodos
  * @thresholds: valores para considerar buy/sell. 
  * Qualquer valor acima de 0.9 indica uma alta. Valores muito acima de 1.5 indicam uma queda de correção
