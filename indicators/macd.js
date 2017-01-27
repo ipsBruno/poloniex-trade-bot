@@ -2,28 +2,8 @@
 /*
 * Carregar MACD da biblioteca technicalindicators
 */
-
 const technicalindicators = require('technicalindicators').MACD;
-
-
-/*
-* Configurar os valores indicadores 
-* Para o método MACD
-* @short/long: periodos
-* @signal: signal p/ macd 
-* @thresholds: valores para considerar buy/sell
-*/
-
-const config = {
-  short: 10,
-  long: 21,
-  signal: 9,
-  thresholds: {
-    down: -0.025,
-    up: 0.025,
-    persistence: 1
-  }
-};
+const config = require("../config.js").MACD;
 
 /*
  * Essa função serve pra calcular o MACD

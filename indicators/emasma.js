@@ -3,21 +3,8 @@
  */
 const smaInd = require('technicalindicators').SMA;
 const emaInd = require('technicalindicators').EMA;
-/*
- * Configurar os valores indicadores 
- * Para o método EMA/SMA
- * @ema/sma: periodos para divisão ema/sma
- * @thresholds: valores para considerar buy/sell. 
- * Qualquer valor acima de 0.9 indica uma alta. Valores muito acima de 1.2 indicam uma queda de correção
- */
-const config = {
-	ema: 10,
-	sma: 45,
-	thresholds: {
-		min: 0.9,
-		max: 1.1
-	}
-};
+const config = require("../config.js").EMASMA;
+
 /*
  * Essa função serve pra calcular o EMA e SMA
  * @prices: valores de entrada
@@ -66,9 +53,9 @@ exports.calculate = function(candles) {
 	var trend = config.thresholds.max > (lastema / lastsma) && (lastema / lastsma) > config.thresholds.min;
 	
 	if (trend) {
-		console.log('\033[37m [EMA/SMA] Detectando tendencia de alta | max: %s | min: %s | ema/sma: %s',config.thresholds.max ,config.thresholds.min, (lastema / lastsma));
+		console.log('\033[37m [EMA/SMA] Detectando tendencia de alta | lastema: %s | lastsma: %s | ema/sma: %s',lastema ,lastsma, (lastema / lastsma));
 	} else {
-		console.log('\033[37m [EMA/SMA] Detectando tendencia de baixa | max: %s | min: %s | ema/sma: %s',config.thresholds.max ,config.thresholds.min, (lastema / lastsma));
+		console.log('\033[37m [EMA/SMA] Detectando tendencia de baixa | lastema: %s | lastsma: %s | ema/sma: %s',lastema ,lastsma, (lastema / lastsma));
 	}
 
 	return trend;

@@ -2,20 +2,8 @@
  * Carregar RSI da biblioteca technicalindicators
  */
 const technicalindicators = require('technicalindicators').RSI;
-/*
- * Configurar os valores indicadores 
- * Para o método RSI
- * @period: periodos
- * @thresholds: valores para considerar buy/sell. 
- * Qualquer valor acima de 70 indica uma baixa. Valores abaixo de 35 indicam alta
- */
-const config = {
-	period: 14,
-	thresholds: {
-		min: 5,
-		max: 40
-	}
-};
+const config = require("../config.js").RSI;
+
 /*
  * Essa função serve pra calcular o RSI
  * @prices: valores de entrada

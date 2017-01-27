@@ -2,21 +2,8 @@
  * Carregar SMA da biblioteca technicalindicators
  */
 const technicalindicators = require('technicalindicators').SMA;
-/*
- * Configurar os valores indicadores 
- * Para o método SMA
- * @short/long: periodos
- * @thresholds: valores para considerar buy/sell. 
- * Qualquer valor acima de 0.9 indica uma alta. Valores muito acima de 1.5 indicam uma queda de correção
- */
-const config = {
-	short: 7,
-	long: 21,
-	thresholds: {
-		min: 0.9,
-		max: 1.5
-	}
-};
+const config = require("../config.js").SMA;
+
 /*
  * Essa função serve pra calcular o MACD
  * @prices: valores de entrada
