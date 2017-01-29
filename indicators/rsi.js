@@ -35,9 +35,9 @@ exports.calculate = function(candles) {
 	var trend = config.thresholds.max >line1[line1.length - 1] && line1[line1.length - 1] > config.thresholds.min;
 	
 	if (trend) {
-		console.log('\033[37m [RSI] Detectando tendencia de alta | max: %s | min: %s | rsi: %s',config.thresholds.max ,config.thresholds.min, line1[line1.length - 1]);
+		console.log('\033[37m[Info] Detectando tendencia de alta para RSI |  max: %s | min: %s | rsi: %s',config.thresholds.max ,config.thresholds.min, line1[line1.length - 1]);
 	} else {
-		console.log('\033[37m [RSI] Detectando tendencia de baixa | max: %s | min: %s | rsi: %s',config.thresholds.max ,config.thresholds.min, line1[line1.length - 1]);
+		console.log('\033[37m[Info] Detectando tendencia de baixa para RSI | max: %s | min: %s | rsi: %s',config.thresholds.max ,config.thresholds.min, line1[line1.length - 1]);
 	}
 
 	// caso a tendencia de short é maior que a de long
