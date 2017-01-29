@@ -94,10 +94,6 @@ exports.setPair = function(pair) {
  * Essa função serve colocar a api/secret do código
  * @return: essa função não emite nenhum retorno  
  */
-/*
- * Essa função serve colocar a api/secret do código
- * @return: essa função não emite nenhum retorno  
- */
 exports.setCredential = function(api, key) {
 	exports.apiKey = api
 	exports.apiSecret = key
@@ -180,6 +176,45 @@ exports.buycoin = function(cotacao, quantia, callback) {
 	})
 	return true
 }
+
+/*
+ * Função moveOrder, cancela ordem aberta e cria uma nova com outro preço/rate
+ * @orderNumber - id da ordem aberta
+ * @rate - novo preço
+ */
+exports.moveOrder = function(orderNumber,rate, callback){
+	if (exports.apiKey == '' || exports.apiSecret == '') return false
+	exports.poloniexApi.moveOrder(
+	{
+		key: exports.apiKey,
+		secret: exports.apiSecret,
+		orderNumber: orderNumber,
+		rate: rate
+	}, function(err, data) {
+		callback(err, data)
+	})
+	return true
+}
+
+/*
+ * Função cancelOrder, cancela ordem aberta
+ * @orderNumber - id da ordem aberta
+ */
+exports.cancelOrder = function(orderNumber, callback){
+	if (exports.apiKey == '' || exports.apiSecret == '') return false
+	exports.poloniexApi.cancelOrder(
+	{
+		key: exports.apiKey,
+		secret: exports.apiSecret,
+		orderNumber: orderNumber
+	}, function(err, data) {
+		callback(err, data)
+	})
+	return true
+	
+}
+		
+
 /*
  * Função para venda de moedas
  * @cotacao: cotação em dólares bitcoin
