@@ -3,7 +3,11 @@
  */
 const technicalindicators = require('technicalindicators').RSI;
 const config = require("../config.js").RSI;
+var log = require('../core/log.js');
 
+exports.rate = "";
+exports.max = "";
+exports.min = "";
 /*
  * Essa função serve pra calcular o RSI
  * @prices: valores de entrada
@@ -31,16 +35,20 @@ exports.calculate = function(candles) {
 			line1.push(result)
 		}
 	});
-
-	var trend = config.thresholds.max >line1[line1.length - 1] && line1[line1.length - 1] > config.thresholds.min;
 	
-	if (trend) {
-		console.log('\033[37m[Info] Detectando tendencia de alta para RSI |  max: %s | min: %s | rsi: %s',config.thresholds.max ,config.thresholds.min, line1[line1.length - 1]);
-	} else {
-		console.log('\033[37m[Info] Detectando tendencia de baixa para RSI | max: %s | min: %s | rsi: %s',config.thresholds.max ,config.thresholds.min, line1[line1.length - 1]);
-	}
-
+	exports.rate = line1[line1.length - 1] ;
+	exports.max = config.thresholds.max;
+	exports.min = config.thresholds.min;
+	
+	var trend = exports.rate > exports.max || exports.rate < exports.min;
+	log.info('debug', "RSI     | rsi: " + exports.rate + "| max: " + exports.max + "| min: " + exports.min);
+	
 	// caso a tendencia de short é maior que a de long
 	// caso for true = tendencia de alta / caso for false tendencia de baixa
 	return trend;
 }
+
+
+
+
+
