@@ -1,8 +1,4 @@
-/**
- * 
- */
-
-var config = require('./config.js');
+var config = require('../config.js');
 var debug = config.debug;
 
 var day = { //dias da semana, ah vá.. 
@@ -37,6 +33,6 @@ exports.info = function (opt, message){
 	    				+ time.getMinutes() + ":" 
 	    				+ time.getSeconds();
 		
-		console.log(color[opt], timestamp, '\t', '[' + opt + ']' ,'\t\t', message, color['info']);
+		console.log(color[opt], timestamp, '\t', '[' + opt + ']' ,'\t\t', message, color['debug']);
 	}
 }
