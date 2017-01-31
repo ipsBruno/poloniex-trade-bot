@@ -51,12 +51,6 @@ exports.calculate = function(candles) {
 	// caso a tendencia de short é maior que a de long
 	// caso for true = tendencia de alta / caso for false tendencia de baixa
 	var trend = config.thresholds.max > (lastema / lastsma) && (lastema / lastsma) > config.thresholds.min;
-	
-	if (trend) {
-		console.log('\033[37m [EMA/SMA] Detectando tendencia de alta | lastema: %s | lastsma: %s | ema/sma: %s',lastema ,lastsma, (lastema / lastsma));
-	} else {
-		console.log('\033[37m [EMA/SMA] Detectando tendencia de baixa | lastema: %s | lastsma: %s | ema/sma: %s',lastema ,lastsma, (lastema / lastsma));
-	}
 
 	return trend;
 }
