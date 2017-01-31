@@ -1,5 +1,8 @@
 var config = {};
 
+//Debug
+config.debug = true;
+
 //Configuração de Key e Secret da Exchange
 config.trader = {
 		value: 10.0,
@@ -17,7 +20,7 @@ config.watch = {
 
 //Configuração do Candle e Histórico
 config.tradingAdvisor = {
-	candleSize: 300, //(candlestick period in seconds; valid values are 300, 900, 1800, 7200, 14400, and 86400),
+	candleSize: 1800, //(candlestick period in seconds; valid values are 300, 900, 1800, 7200, 14400, and 86400),
 	historySize: 45
 }
 
@@ -34,8 +37,8 @@ config.EMASMA = {
 	sma: 45,
 	enable: true, //ainda sem utilizade
 	thresholds: {
-		min: 0.9,
-		max: 1.1
+		min: 0.999,
+		max: 1.001
 	}
 };
 
@@ -68,8 +71,8 @@ config.RSI =  {
 	period: 14,
 	enable: true, //ainda sem utilizade
 	thresholds: {
-		min: 5,
-		max: 40
+		min: 30,
+		max: 70
 	}
 };
 
