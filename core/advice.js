@@ -80,7 +80,7 @@ exports.calculate = function(opt){
 	} else if (opt == 'buy'){
 		log.info('debug', "advice >> calculate >> calculo do ammount para compra");
 		
-		var fee = 0.25; //ajustar as fee
+		var fee = 0.25; //ajustar as fee 
 	
 		exports.ammount = parseFloat(bot.rempercent(parseFloat(exports.currency/exports.rate), fee));
 		exports.ammount = exports.ammount.toFixed(8);
