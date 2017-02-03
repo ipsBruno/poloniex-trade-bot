@@ -41,7 +41,6 @@ exports.calculate = function(candles) {
 	exports.min = config.thresholds.min;
 	
 	var trend = exports.rate > exports.max || exports.rate < exports.min;
-	log.info('debug', "RSI     | rsi: " + exports.rate + "| max: " + exports.max + "| min: " + exports.min);
 	
 	// caso a tendencia de short é maior que a de long
 	// caso for true = tendencia de alta / caso for false tendencia de baixa

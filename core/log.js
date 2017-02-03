@@ -33,6 +33,6 @@ exports.info = function (opt, message){
 	    				+ time.getMinutes() + ":" 
 	    				+ time.getSeconds();
 		
-		console.log(color[opt], timestamp, '\t', '[' + opt + ']' ,'\t\t', message, color['debug']);
+		console.log(color[opt],'\t', timestamp, '\t', '[' + opt + ']' ,'\t', message,'\t' , color['debug']);
 	}
 }
